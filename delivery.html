@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacy Parcels - Book Your Delivery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        /* --- Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Mulish', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #F7F6F2; /* Original Light Theme */
+            color: #4A4E69;
+            overflow-x: hidden;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #B5838D, #9A8C98);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #4A4E69;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: #B5838D; }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            padding: 120px 20px 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: #4A4E69;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            color: #9A8C98;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* --- Delivery Panels --- */
+        .delivery-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .card-container {
+            position: relative;
+            width: 280px;
+            cursor: pointer;
+        }
+
+        .glow-canvas {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border-radius: 20px;
+            filter: blur(25px);
+            opacity: 0.2;
+            z-index: 1;
+            transition: opacity 0.4s;
+        }
+
+        .standard-glow { background: #B5838D; }
+        .express-glow { background: #9A8C98; }
+        .scheduled-glow { background: #6D6875; }
+
+        .delivery-card {
+            position: relative;
+            z-index: 2;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            text-align: left;
+        }
+
+        .delivery-card:hover {
+            transform: translateY(-10px);
+            border-color: #B5838D;
+        }
+
+        .card-container:hover .glow-canvas { opacity: 0.5; }
+
+        .delivery-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .delivery-card h2 { font-size: 1.3rem; margin-bottom: 8px; color: #4A4E69; }
+        .delivery-card p { font-size: 0.85rem; color: #9A8C98; line-height: 1.4; }
+
+        /* --- The Merged Form Section --- */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto 80px;
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .form-container h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #4A4E69;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #6D6875;
+        }
+
+        select, input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #E5E5E5;
+            border-radius: 10px;
+            background-color: #FAFAFA;
+            color: #4A4E69;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: #B5838D;
+            background-color: white;
+        }
+
+        textarea { height: 100px; resize: none; }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #B5838D, #9A8C98);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(181, 131, 141, 0.3);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #F6F1F1;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #DAD7D7;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Pacy Parcels</div>
+        <nav>
+    <ul>
+        <li><a href="http://localhost/pacy_site/">HOME</a></li>
+        <li><a href="index.php">About Us</a></li>
+        <li><a href="index.php">Contact Us</a></li>
+    </ul>
+</nav>
+
+    </header>
+
+    <section class="hero-section">
+        <h1>Book Your Delivery</h1>
+        <p class="intro">Select a mode and fill in the details below to get started.</p>
+
+        <div class="delivery-options">
+            <div class="card-container" onclick="selectMode('Normal')">
+                <div class="glow-canvas standard-glow"></div>
+                <div class="delivery-card" id="card-Normal">
+                  <img class="delivery-img" src="standardd.png" alt="Express"> 
+                    <h2>Normal Delivery</h2>
+                    <p> Send packages  with guaranteed delivery within 5 hours charging र20/kg.</p>
+                </div>
+            </div>
+
+            <div class="card-container" onclick="selectMode('Express')">
+                <div class="glow-canvas express-glow"></div>
+                <div class="delivery-card" id="card-Express">
+                    <img class="delivery-img" src="empp.jpg" alt="Express">
+                    <h2>Express Delivery</h2>
+                    <p>Ultra-fast delivery for packages which guarantees delievery within 30 minutes for just ₹50/kg.</p>
+                </div>
+            </div>
+
+            <div class="card-container" onclick="selectMode('Scheduled')">
+                <div class="glow-canvas scheduled-glow"></div>
+                <div class="delivery-card" id="card-Scheduled">
+                    <img class="delivery-img" src="bulk.jpg" alt="Scheduled">
+                    <h2>Scheduled</h2>
+                    <p>Plan ahead and choose your preferred delivery time slot that fits your busy schedule.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <h3>Delivery Details</h3>
+            <form action="delivery_submit.php" method="POST">
+                
+                <div class="form-group">
+                    <label>Delivery Mode</label>
+                    <select name="delivery_mode" id="delivery_mode_select" required>
+                        <option value="">-- Select Mode --</option>
+                        <option value="Normal">Normal Delivery</option>
+                        <option value="Express">Express Delivery</option>
+                        <option value="Scheduled">Scheduled Delivery</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Pickup Location</label>
+                    <input type="text" name="pickup_location" placeholder="Building/Hostel Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Drop Location</label>
+                    <input type="text" name="drop_location" placeholder="Destination Office/Room" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Notes</label>
+                    <textarea name="notes" placeholder="e.g. Fragile items, leave at the door..."></textarea>
+                </div>
+
+                <button type="submit">Confirm Delivery</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Pacy Parcels. Crafted with passion.</p>
+    </footer>
+
+    <script>
+        // Smooth interaction: Selecting a card updates the dropdown
+        function selectMode(mode) {
+            document.getElementById('delivery_mode_select').value = mode;
+            
+            // Remove highlight from all
+            document.querySelectorAll('.delivery-card').forEach(card => {
+                card.style.borderColor = 'transparent';
+                card.style.backgroundColor = 'white';
+            });
+
+            // Add highlight to selected
+            const selectedCard = document.getElementById('card-' + mode);
+            selectedCard.style.borderColor = '#B5838D';
+            selectedCard.style.backgroundColor = '#FFF9FA';
+
+            // Scroll to form for better UX
+            document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+
+<script>
+window.onload = function () {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("status") === "success") {
+        alert("🚚 Delivery request placed successfully!");
+        window.history.replaceState({}, document.title, "delivery.html");
+    }
+
+    if (params.get("status") === "error") {
+        alert("❌ Please fill all required fields.");
+        window.history.replaceState({}, document.title, "delivery.html");
+    }
+};
+</script>
+
+
+</body>
+</html>

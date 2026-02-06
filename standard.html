@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pacy Parcels - Standard Delivery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Mulish', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(135deg, #F6F1F1, #EDE7F6);
+      color: #4A4E69;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      background: transparent;
+      padding: 40px 20px;
+      color: #4A4E69;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.5s;
+    }
+
+    header.sticky {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px 20px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+   
+        /* Logo Styles */
+        .logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+            background: linear-gradient(45deg, #B5838D, #9A8C98);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            color: #6D6875;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #B5838D, #9A8C98);
+            transition: width 0.3s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    }
+
+    nav a {
+      color: #4A4E69;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 10px 15px;
+      transition: color 0.3s, transform 0.2s;
+      border-radius: 8px;
+    }
+
+    nav a:hover {
+      color: #9A8C98;
+      transform: scale(1.05);
+    }
+
+    /* Form Section */
+    .form-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding-top: 140px; /* Offset for fixed header */
+      padding-bottom: 60px;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .form-section h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #4A4E69;
+    }
+
+    .form-section h3 {
+      font-size: 1.4rem;
+      margin-bottom: 30px;
+      color: #6D6875;
+      font-weight: 500;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+      text-align: left;
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #4A4E69;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: 600;
+      color: #4A4E69;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #B5838D;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #6D6875;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #F6F1F1;
+      color: #4A4E69;
+      padding: 40px;
+      text-align: center;
+      border-top: 2px solid #DAD7D7;
+    }
+
+    footer a {
+      color: #B5838D;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      color: #6D6875;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header id="header">
+    <div class="logo">
+      <img src="laaaago.png" alt="Pacy Parcels Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="delivery.html">Delivery Options</a></li>
+        <li><a href="test.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Delivery Form Section -->
+  <section class="form-section">
+    <h1>Standard Delivery</h1>
+    <h3>Reliable & affordable service for all your parcel needs</h3> <!-- Subcategory Added -->
+    <div class="form-container">
+      <h2>Parcel Delivery Form</h2>
+      <form action="submit.html" method="post">
+        <label for="pickup">Pickup Location</label>
+        <input type="text" id="pickup" name="pickup" placeholder="Enter pickup address" required>
+
+        <label for="dropoff">Drop-off Location</label>
+        <input type="text" id="dropoff" name="dropoff" placeholder="Enter drop-off address" required>
+
+        <label for="parcel">Parcel Details</label>
+        <textarea id="parcel" name="parcel" placeholder="Describe your parcel (size, weight, etc.)"></textarea>
+
+        
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2025 Pacy Parcels. Crafted with passion and precision. |
+      <a href="home.html">Home</a> • 
+      <a href="about.html">About Us</a> • 
+      <a href="delivery.html">Delivery Options</a> • 
+      <a href="test.html">Contact Us</a>
+    </p>
+  </footer>
+
+  <!-- Sticky Header Script -->
+  <script>
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('sticky');
+      } else {
+        header.classList.remove('sticky');
+      }
+    });
+  </script>
+</body>
+</html>
